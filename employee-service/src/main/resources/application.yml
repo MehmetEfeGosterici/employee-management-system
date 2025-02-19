@@ -5,8 +5,23 @@ spring:
     username: ${database.username}
     password: ${database.password}
     url: ${database.url}
+  liquibase:
+    change-log: classpath:db.changelog/db.changelog-master.xml
+    enabled: true
+    default-schema: ${database.schema}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_catalog: ${database.name}
+        default_schema: ${database.schema}
+        order_by:
+          default_null_ordering: last
 
 database:
-  url: jdbc:postgresql://localhost:5555/ems
+  url: jdbc:postgresql://localhost:55550/ems
   username: postgres
   password: postgres
+  schema: employee
+
