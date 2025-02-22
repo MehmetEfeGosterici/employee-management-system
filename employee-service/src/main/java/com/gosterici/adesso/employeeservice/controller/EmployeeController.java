@@ -1,5 +1,6 @@
 package com.gosterici.adesso.employeeservice.controller;
 
+import com.gosterici.adesso.employeeservice.controller.resource.EmployeeResource;
 import com.gosterici.adesso.employeeservice.domain.Employee;
 import com.gosterici.adesso.employeeservice.domain.requests.CreateEmployeeRequest;
 import com.gosterici.adesso.employeeservice.domain.requests.UpdateEmployeeRequest;
@@ -33,9 +34,13 @@ class EmployeeController {
     private final UpdateEmployeeUseCase updateEmployeeUseCase;
 
     @GetMapping(path = "/{employeeId}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable UUID employeeId) {
-        Optional<Employee> optionalEmployee = getEmployeeQuery.getEmployee(employeeId);
-        return optionalEmployee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<EmployeeResource> getEmployee(@PathVariable UUID employeeId) {
+        Optional<EmployeeResource> optEmployeeResource = getEmployeeQuery.getEmployee(employeeId);
+        if(optEmployeeResource.isPresent()){
+            EmployeeResource employeeResource = optEmployeeResource.get();
+            return ResponseEntity.ok(employeeResource);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping

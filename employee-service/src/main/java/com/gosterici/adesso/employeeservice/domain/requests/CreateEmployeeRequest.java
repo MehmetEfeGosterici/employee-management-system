@@ -1,6 +1,6 @@
 package com.gosterici.adesso.employeeservice.domain.requests;
 
-import com.gosterici.adesso.employeeservice.domain.EmployeeRoleEnum;
+import com.gosterici.adesso.employeeservice.domain.EmployeeRole;
 import lombok.Getter;
 
 import java.util.List;
@@ -11,5 +11,5 @@ public class CreateEmployeeRequest {
     private String surname;
     private String email;
     private String phoneNumber;
-    private List<EmployeeRoleEnum> roles;
+    private List<EmployeeRole> roles;
 }

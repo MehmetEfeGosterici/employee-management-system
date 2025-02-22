@@ -1,6 +1,6 @@
 package com.gosterici.adesso.employeeservice.service.ports;
 
-import com.gosterici.adesso.employeeservice.domain.EmployeeRoleEnum;
+import com.gosterici.adesso.employeeservice.domain.EmployeeRole;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,6 +17,6 @@ public interface CreateEmployeeUseCase {
         public String surname;
         public String email;
         public String phoneNumber;
-        public List<EmployeeRoleEnum> roles;
+        public List<EmployeeRole> roles;
     }
 }

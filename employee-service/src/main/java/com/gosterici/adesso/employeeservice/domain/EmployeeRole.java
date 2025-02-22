@@ -1,6 +1,6 @@
 package com.gosterici.adesso.employeeservice.domain;
 
-public enum EmployeeRoleEnum {
+public enum EmployeeRole {
 
     ADMIN,
     MANAGER,
@@ -9,8 +9,8 @@ public enum EmployeeRoleEnum {
     CONTRACTOR,
     INTERN;
 
-    public static EmployeeRoleEnum getFromName(String name){
-        for(EmployeeRoleEnum role : EmployeeRoleEnum.values()){
+    public static EmployeeRole getFromName(String name){
+        for(EmployeeRole role : EmployeeRole.values()){
             if(role.name().equals(name)){
                 return role;
             }

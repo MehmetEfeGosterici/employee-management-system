@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -37,15 +38,30 @@ public class Employee extends BaseEntity {
     private String phoneNumber;
 
     @Builder.Default
-    @JsonManagedReference
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", orphanRemoval = true)
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "employee")
     private Set<Address> addresses;
 
+    @ManyToMany
+    @JoinTable(
+            name = "employee_project",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    private List<Project> projects;
+
 
     public void addRoles(Set<Role> roles) {
         this.roles.addAll(roles);
+    }
+
+    public void addProjects(List<Project> projects) {
+        this.projects.addAll(projects);
+    }
+
+    public void removeProjects(List<Project> projects) {
+        this.projects.removeAll(projects);
     }
 }
