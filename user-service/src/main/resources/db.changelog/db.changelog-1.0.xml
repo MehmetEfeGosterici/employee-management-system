@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="create_user_table" author="efe.gosterici@adesso.com.tr">
+        <createTable tableName="user">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="insert_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="authorities">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="insert_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="varchar(20)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="user_authorities">
+            <column name="user_id" type="uuid">
+                <constraints foreignKeyName="user_fk" nullable="false"/>
+            </column>
+            <column name="authority_id" type="uuid">
+                <constraints foreignKeyName="authority_fk" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert_user_data" author="efe.gosterici@adesso.cm.tr">
+        <insert tableName="user">
+            <column name="id" value="123e4567-e89b-12d3-a456-426614174000"/>
+            <column name="insert_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="update_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="email" value="admin@adesso.com"/>
+            <column name="username" value="admin"/>
+            <column name="password" value="admin123"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" value="989e4142-99b1-464d-8b48-db8be5a2d6b3"/>
+            <column name="insert_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="update_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="email" value="user@adesso.com"/>
+            <column name="username" value="user"/>
+            <column name="password" value="user123"/>
+        </insert>
+
+        <insert tableName="authorities">
+            <column name="id" value="111e4567-e89b-12d3-a456-426614174000"/>
+            <column name="insert_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="update_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="authority" value="ADMIN"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="authorities">
+            <column name="id" value="222e4567-e89b-12d3-a456-426614174000"/>
+            <column name="insert_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="update_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="authority" value="MANAGER"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="authorities">
+            <column name="id" value="333e4567-e89b-12d3-a456-426614174000"/>
+            <column name="insert_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="update_time" valueDate="2025-02-22T00:00:00"/>
+            <column name="authority" value="EMPLOYEE"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="user_authorities">
+            <column name="user_id" value="123e4567-e89b-12d3-a456-426614174000"/>
+            <column name="authority_id" value="111e4567-e89b-12d3-a456-426614174000"/>
+        </insert>
+        <insert tableName="user_authorities">
+            <column name="user_id" value="989e4142-99b1-464d-8b48-db8be5a2d6b3"/>
+            <column name="authority_id" value="222e4567-e89b-12d3-a456-426614174000"/>
+        </insert>
+        <insert tableName="user_authorities">
+            <column name="user_id" value="989e4142-99b1-464d-8b48-db8be5a2d6b3"/>
+            <column name="authority_id" value="333e4567-e89b-12d3-a456-426614174000"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
