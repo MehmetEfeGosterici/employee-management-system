@@ -2,15 +2,14 @@ package com.gosterici.adesso.userservice.service;
 
 import com.gosterici.adesso.userservice.domain.User;
 import com.gosterici.adesso.userservice.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import jakarta.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Transactional

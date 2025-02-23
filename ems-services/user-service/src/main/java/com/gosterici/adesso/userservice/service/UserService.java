@@ -8,15 +8,14 @@ import com.gosterici.adesso.userservice.repository.UserRepository;
 import com.gosterici.adesso.userservice.service.ports.DeleteUserPort;
 import com.gosterici.adesso.userservice.service.ports.UpdateUserPort;
 import com.gosterici.adesso.userservice.service.ports.UserQuery;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 @Transactional

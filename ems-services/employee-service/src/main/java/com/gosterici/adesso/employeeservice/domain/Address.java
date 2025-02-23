@@ -1,6 +1,5 @@
 package com.gosterici.adesso.employeeservice.domain;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

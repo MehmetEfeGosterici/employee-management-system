@@ -7,13 +7,12 @@ import com.gosterici.adesso.employeeservice.repositories.ProjectsRepository;
 import com.gosterici.adesso.employeeservice.service.project.ports.CreateProjectUseCase;
 import com.gosterici.adesso.employeeservice.service.project.ports.GetProjectsQuery;
 import com.gosterici.adesso.employeeservice.service.project.ports.UpdateProjectUseCase;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @Transactional

@@ -1,0 +1,28 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/employee/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+      path: /actuator/health
+    registry-fetch-interval-seconds: 10

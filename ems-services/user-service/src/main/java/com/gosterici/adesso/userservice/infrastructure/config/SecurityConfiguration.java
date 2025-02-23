@@ -51,14 +51,14 @@ public class SecurityConfiguration {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(
-                    requestMatcherRegistry ->
-                            requestMatcherRegistry
-                                    .requestMatchers("/auth/**")
-                                    .permitAll()
-                                    .anyRequest()
-                                    .authenticated())
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        .authorizeHttpRequests(
+            requestMatcherRegistry ->
+                requestMatcherRegistry
+                    .requestMatchers("/auth/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated())
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
 }

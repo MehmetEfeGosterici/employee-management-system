@@ -12,14 +12,13 @@ import com.gosterici.adesso.employeeservice.service.ports.DeleteEmployeeUseCase;
 import com.gosterici.adesso.employeeservice.service.ports.GetEmployeeQuery;
 import com.gosterici.adesso.employeeservice.service.ports.UpdateEmployeeUseCase;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @Transactional

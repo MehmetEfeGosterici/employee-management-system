@@ -1,6 +1,5 @@
 package com.gosterici.adesso.employeeservice.domain;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -22,6 +21,5 @@ public class Role extends BaseEntity {
 
   @Builder.Default private boolean isActive = true;
 
-  @ManyToOne
-  private Employee employee;
+  @ManyToOne private Employee employee;
 }
