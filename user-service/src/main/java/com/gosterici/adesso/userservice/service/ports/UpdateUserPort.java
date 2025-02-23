@@ -4,5 +4,5 @@ import com.gosterici.adesso.userservice.domain.request.UpdateUserRequest;
 
 public interface UpdateUserPort {
 
-    void updateUser(UpdateUserRequest request);
+  void updateUser(UpdateUserRequest request);
 }

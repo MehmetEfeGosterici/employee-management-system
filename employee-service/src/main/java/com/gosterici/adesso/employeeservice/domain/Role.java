@@ -14,13 +14,12 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
 
-    @Enumerated(EnumType.STRING)
-    private EmployeeRole role;
-    @Builder.Default
-    private boolean isActive = true;
+  @Enumerated(EnumType.STRING)
+  private EmployeeRole role;
 
-    @ManyToOne
-    private Employee employee;
+  @Builder.Default private boolean isActive = true;
+
+  @ManyToOne private Employee employee;
 }

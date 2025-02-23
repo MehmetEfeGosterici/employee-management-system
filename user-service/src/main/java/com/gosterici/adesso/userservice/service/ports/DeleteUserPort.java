@@ -4,5 +4,5 @@ import java.util.UUID;
 
 public interface DeleteUserPort {
 
-    void deleteUser(UUID userId);
+  void deleteUser(UUID userId);
 }
