@@ -1,6 +1,5 @@
 package com.gosterici.adesso.employeeservice.infrastructure.config;
 
-
 import com.gosterici.adesso.employeeservice.infrastructure.filter.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -31,17 +30,17 @@ public class SecurityConfiguration {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.csrf(AbstractHttpConfigurer::disable)
-            .sessionManagement(sessionManagement ->
-                    sessionManagement
-                            .sessionCreationPolicy(SessionCreationPolicy.NEVER))
-            .authorizeHttpRequests(
-                    requestMatcherRegistry ->
-                            requestMatcherRegistry
-                                    .requestMatchers("/auth/**")
-                                    .permitAll()
-                                    .anyRequest()
-                                    .authenticated())
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        .sessionManagement(
+            sessionManagement ->
+                sessionManagement.sessionCreationPolicy(SessionCreationPolicy.NEVER))
+        .authorizeHttpRequests(
+            requestMatcherRegistry ->
+                requestMatcherRegistry
+                    .requestMatchers("/auth/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated())
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
 }
