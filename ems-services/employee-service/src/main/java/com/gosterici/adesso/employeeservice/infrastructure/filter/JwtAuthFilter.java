@@ -1,4 +1,4 @@
-package com.gosterici.adesso.userservice.infrastructure.filter;
+package com.gosterici.adesso.employeeservice.infrastructure.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -22,12 +24,14 @@ import java.util.stream.Stream;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final static String COMMA_SEPARATOR = ",";
-    @Override
+    private final static String SPRING_SECURITY_CONTEXT = "SPRING_SECURITY_CONTEXT";
+    private final SecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
+
     protected void doFilterInternal(
             HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         final String userEmail = request.getHeader("X-Username");
-        final String authorization = request.getHeader("X-authorities");
+        final String authorization = request.getHeader("X-Authorities");
 
         if (userEmail == null || authorization == null) {
             filterChain.doFilter(request, response);
@@ -45,6 +49,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                 userEmail, null, authorities);
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+                securityContextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
             }
             filterChain.doFilter(request, response);
         } catch (Exception exception) {

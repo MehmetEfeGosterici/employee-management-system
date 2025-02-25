@@ -35,4 +35,3 @@ database:
   username: postgres
   password: postgres
   schema: employee
-

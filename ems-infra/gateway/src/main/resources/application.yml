@@ -1,6 +1,8 @@
 server:
   port: 9090
 spring:
+  main:
+    web-application-type: reactive
   application:
     name: gateway
   cloud:
@@ -26,3 +28,6 @@ eureka:
       enabled: true
       path: /actuator/health
     registry-fetch-interval-seconds: 10
+jwt:
+  secret: a21d1c916ba20fed582b5cb4d11582674bc5c65bef2493bd700de202401bbdfd
+  expiration: 3600000

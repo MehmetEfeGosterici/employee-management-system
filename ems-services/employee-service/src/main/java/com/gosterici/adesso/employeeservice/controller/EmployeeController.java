@@ -8,11 +8,9 @@ import com.gosterici.adesso.employeeservice.service.ports.CreateEmployeeUseCase;
 import com.gosterici.adesso.employeeservice.service.ports.DeleteEmployeeUseCase;
 import com.gosterici.adesso.employeeservice.service.ports.GetEmployeeQuery;
 import com.gosterici.adesso.employeeservice.service.ports.UpdateEmployeeUseCase;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/employee")
@@ -43,9 +45,10 @@ class EmployeeController {
     return Mono.just(ResponseEntity.notFound().build());
   }
 
+  @PreAuthorize("hasAuthority('ADMIN')")
   @GetMapping
-  public ResponseEntity<List<Employee>> getEmployees(@RequestBody List<UUID> employeeIds) {
-    List<Employee> employeeList = getEmployeeQuery.getEmployees(employeeIds);
+  public ResponseEntity<List<Employee>> getEmployees() {
+    List<Employee> employeeList = getEmployeeQuery.findAllEmployees();
     return ResponseEntity.ok(employeeList);
   }
 
